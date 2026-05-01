@@ -85,7 +85,7 @@ export default function Chat() {
   };
 
   return (
-    <Flex direction="column" h="calc(100vh - 150px)" bg="white" p="4" borderRadius="2xl" shadow="sm">
+    <Flex direction="column" h="calc(100vh - 150px)" bg="#121212" p="4" borderRadius="2xl" shadow="sm" border="1px solid" borderColor="whiteAlpha.100">
       <Box flex="1" overflowY="auto" p="4" gap="4" hideScrollbar ref={scrollRef}>
         <VStack align="stretch" gap="6">
           {messages.map((msg) => (
@@ -103,13 +103,15 @@ export default function Chat() {
                 </Avatar.Root>
               )}
               <Box 
-                bg={msg.role === 'user' ? 'brand.500' : 'gray.100'} 
-                color={msg.role === 'user' ? 'white' : 'gray.800'}
+                bg={msg.role === 'user' ? 'brand.500' : '#1e1e1e'} 
+                color="white"
                 p="4" 
                 borderRadius="2xl"
                 borderBottomRightRadius={msg.role === 'user' ? '4px' : '2xl'}
                 borderTopLeftRadius={msg.role === 'model' ? '4px' : '2xl'}
                 boxShadow="sm"
+                border={msg.role === 'model' ? '1px solid' : 'none'}
+                borderColor="whiteAlpha.100"
               >
                 <Text fontSize="md" whiteSpace="pre-wrap">{msg.text}</Text>
               </Box>
@@ -129,7 +131,7 @@ export default function Chat() {
                   <Icon as={Bot} />
                 </Avatar.Fallback>
               </Avatar.Root>
-              <Box bg="gray.100" p="4" borderRadius="2xl" borderTopLeftRadius="4px">
+              <Box bg="#1e1e1e" p="4" borderRadius="2xl" borderTopLeftRadius="4px" border="1px solid" borderColor="whiteAlpha.100">
                 <Spinner size="sm" color="brand.500" />
               </Box>
             </HStack>
@@ -137,18 +139,20 @@ export default function Chat() {
         </VStack>
       </Box>
 
-      <Box pt="4" borderTop="1px" borderColor="gray.100">
+      <Box pt="4" borderTop="1px" borderColor="whiteAlpha.100">
         <HStack gap="3">
           <Input 
             placeholder={t('placeholder')} 
             value={input} 
             onChange={(e) => setInput(e.target.value)}
-            onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+            onKeyPress={(e: any) => e.key === 'Enter' && handleSend()}
             h="50px"
             borderRadius="full"
-            bg="gray.50"
-            border="none"
-            _focus={{ bg: 'white', ring: '1px', ringColor: 'brand.500' }}
+            bg="#1e1e1e"
+            color="white"
+            border="1px solid"
+            borderColor="whiteAlpha.200"
+            _focus={{ bg: '#1e1e1e', ring: '1px', ringColor: 'brand.500' }}
           />
           <Button 
             bg="brand.500" 
@@ -158,6 +162,7 @@ export default function Chat() {
             p="0"
             onClick={handleSend}
             disabled={!input.trim() || isLoading}
+            _hover={{ bg: 'brand.600' }}
           >
             <Icon as={Send} size="20" />
           </Button>

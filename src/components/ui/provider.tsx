@@ -14,6 +14,22 @@ const config = defineConfig({
         },
       },
     },
+    semanticTokens: {
+      colors: {
+        bg: {
+          default: { value: "{colors.white}" },
+          _dark: { value: "#0a0a0a" },
+        },
+        sidebarBg: {
+          default: { value: "{colors.white}" },
+          _dark: { value: "#121212" },
+        },
+        cardBg: {
+          default: { value: "{colors.white}" },
+          _dark: { value: "#1e1e1e" },
+        },
+      },
+    },
   },
 })
 
@@ -22,7 +38,9 @@ export const system = createSystem(defaultConfig, config)
 export function Provider(props: { children: ReactNode }) {
   return (
     <ChakraProvider value={system}>
-      {props.children}
+      <div className="chakra-dark" style={{ colorScheme: 'dark', minHeight: '100vh', backgroundColor: '#0a0a0a', color: 'white' }}>
+        {props.children}
+      </div>
     </ChakraProvider>
   )
 }

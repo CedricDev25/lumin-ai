@@ -47,10 +47,10 @@ const NavItem = ({ icon, label, href, active }: NavItemProps) => {
         py="3"
         borderRadius="lg"
         bg={active ? 'brand.500' : 'transparent'}
-        color={active ? 'white' : 'gray.600'}
+        color={active ? 'white' : 'whiteAlpha.600'}
         _hover={{
-          bg: active ? 'brand.600' : 'gray.100',
-          color: active ? 'white' : 'brand.600',
+          bg: active ? 'brand.600' : 'whiteAlpha.100',
+          color: active ? 'white' : 'brand.400',
         }}
         transition="all 0.2s"
         gap="3"
@@ -85,14 +85,14 @@ export default function Layout() {
   };
 
   return (
-    <Flex h="100vh" bg="gray.50">
+    <Flex h="100vh" bg="#0a0a0a" color="white">
       {/* Sidebar */}
       <Box
         w={isSidebarOpen ? "260px" : "0"}
         h="full"
-        bg="white"
+        bg="#121212"
         borderRight="1px"
-        borderColor="gray.200"
+        borderColor="whiteAlpha.100"
         transition="all 0.3s"
         overflow="hidden"
         display={{ base: 'none', md: 'block' }}
@@ -102,7 +102,7 @@ export default function Layout() {
             <Box bg="brand.500" p="2" borderRadius="lg">
               <Icon as={Bot} color="white" size="24" />
             </Box>
-            <Text fontSize="xl" fontWeight="bold" color="brand.600">
+            <Text fontSize="xl" fontWeight="bold" color="white">
               Lumina AI
             </Text>
           </HStack>
@@ -125,8 +125,8 @@ export default function Layout() {
               px="4"
               py="3"
               borderRadius="lg"
-              color="red.500"
-              _hover={{ bg: 'red.50' }}
+              color="red.400"
+              _hover={{ bg: 'whiteAlpha.100' }}
               cursor="pointer"
               onClick={handleLogout}
               gap="3"
@@ -144,11 +144,11 @@ export default function Layout() {
         <Flex
           h="70px"
           px="8"
-          bg="white"
+          bg="#121212"
           align="center"
           justify="space-between"
           borderBottom="1px"
-          borderColor="gray.200"
+          borderColor="whiteAlpha.100"
         >
           <HStack gap="4">
             <IconButton
@@ -156,10 +156,11 @@ export default function Layout() {
               variant="ghost"
                onClick={() => setSidebarOpen(!isSidebarOpen)}
               display={{ base: 'none', md: 'flex' }}
+              color="whiteAlpha.700"
             >
               <Icon as={Menu} />
             </IconButton>
-            <Text fontWeight="semibold" color="gray.700" fontSize="md">
+            <Text fontWeight="semibold" color="whiteAlpha.900" fontSize="md">
               {navItems.find(item => item.href === location.pathname)?.label || 'Study Assistant'}
             </Text>
           </HStack>
@@ -167,8 +168,8 @@ export default function Layout() {
           <HStack gap="4">
             <HStack gap="3" px="2">
               <VStack align="end" gap="0" display={{ base: 'none', sm: 'flex' }}>
-                <Text fontWeight="bold" fontSize="sm">{user?.name}</Text>
-                <Text fontSize="xs" color="gray.500">{user?.email}</Text>
+                <Text fontWeight="bold" fontSize="sm" color="white">{user?.name}</Text>
+                <Text fontSize="xs" color="whiteAlpha.600">{user?.email}</Text>
               </VStack>
               <Avatar.Root size="sm">
                 <Avatar.Fallback>
@@ -181,7 +182,7 @@ export default function Layout() {
         </Flex>
 
         {/* Page Container */}
-        <Box flex="1" p="8" overflowY="auto">
+        <Box flex="1" p="8" overflowY="auto" className="chakra-dark">
           <Outlet />
         </Box>
       </Flex>
