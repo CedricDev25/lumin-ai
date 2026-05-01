@@ -1,0 +1,6 @@
+{
+  "name": "Lumina Study AI",
+  "description": "A modern AI-powered study assistant that helps students summarize notes, generate quizzes, and simplify complex topics using the Gemini API.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
